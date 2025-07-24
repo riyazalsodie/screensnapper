@@ -259,11 +259,11 @@ class MainWindow(QtWidgets.QWidget):
         self.setWindowFlags(QtCore.Qt.FramelessWindowHint | QtCore.Qt.Window)
         # Use s.png as the icon if it exists, else fallback
         if os.path.exists(ICON_PATH):
-            icon = QtGui.QIcon(ICON_PATH)
+            self._icon = QtGui.QIcon(ICON_PATH)
         else:
             style = QtWidgets.QApplication.style()
-            icon = style.standardIcon(QtWidgets.QStyle.SP_ComputerIcon)
-        self.setWindowIcon(icon)
+            self._icon = style.standardIcon(QtWidgets.QStyle.SP_ComputerIcon)
+        self.setWindowIcon(self._icon)
         # Apply sci-fi black and green theme
         self.setStyleSheet('''
             QWidget {
@@ -340,7 +340,7 @@ class MainWindow(QtWidgets.QWidget):
         self.autostart_chk.stateChanged.connect(self.toggle_autostart)
         self.hotkey = None
         self.hotkey_str = None
-        self.tray_icon = SystemTrayIcon(icon, self)
+        self.tray_icon = SystemTrayIcon(self._icon, self)
         self.tray_icon.setToolTip(APP_NAME)
         self.tray_icon.show()
         self.registered_hotkey = None
