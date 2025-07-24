@@ -11,7 +11,7 @@ import winreg
 
 APP_NAME = "ScreenSnapper"
 REG_PATH = r"Software\\Microsoft\\Windows\\CurrentVersion\\Run"
-ICON_PATH = os.path.join(os.path.dirname(__file__), 's.png')
+ICON_PATH = os.path.join(os.path.dirname(__file__), 's.ico')
 
 class Overlay(QtWidgets.QWidget):
     selection_made = QtCore.pyqtSignal(QtCore.QRect, QtGui.QPixmap)
@@ -257,7 +257,7 @@ class MainWindow(QtWidgets.QWidget):
         self.setFixedSize(420, 220)
         # Frameless window for custom title bar
         self.setWindowFlags(QtCore.Qt.FramelessWindowHint | QtCore.Qt.Window)
-        # Use s.png as the icon if it exists, else fallback
+        # Use s.ico as the icon if it exists, else fallback
         if os.path.exists(ICON_PATH):
             self._icon = QtGui.QIcon(ICON_PATH)
         else:
